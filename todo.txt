@@ -1,0 +1,13 @@
+to do:
+
+1. corner issue DONE
+2. extending move class for bullet
+3. bullet shoots own ship DONE
+4. asteroids break apart when shot
+5. remove backward motion DONE
+6. add drag/friction DONE
+7. allow for shooting while turning
+8. asteroid collisions?
+9. items disappear too soon
+10. death of bullets
+11. refactor Bullet#hitSprites
