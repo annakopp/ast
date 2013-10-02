@@ -2,11 +2,9 @@
 
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-  // var func1 = LongLibraryName.func1 = function () {
-  //     // do work
-  //   }
-  //
-  var MovingObject = Asteroids.MovingObject = function(pos, vel, color, radius) {
+
+  var MovingObject = Asteroids.MovingObject = function(pos, vel, color, radius, mass) {
+    this.mass = mass;
     this.posX = pos[0];
     this.posY = pos[1];
     this.direction = vel[1];

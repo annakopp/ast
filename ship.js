@@ -5,7 +5,8 @@
   var Ship = Asteroids.Ship = function(pos, vel){
     this.COLOR = "white";
     this.RADIUS = 3;
-    Asteroids.MovingObject.call(this, pos, vel, this.COLOR, this.RADIUS);
+    this.mass = 3;
+    Asteroids.MovingObject.call(this, pos, vel, this.COLOR, this.RADIUS, this.mass);
   };
 
   Ship.inherits(Asteroids.MovingObject);

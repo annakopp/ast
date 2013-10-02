@@ -14,12 +14,14 @@
   };
 
   Game.prototype.bindKeyHandlers = function() {
-    that = this;
-    key("right", function() { that.ship.direction = (that.ship.direction + 0.1) % (2 * Math.PI) } );
-    key("left", function() { that.ship.direction = (that.ship.direction - 0.1) % (2 * Math.PI) } );
-    key("up", function() { that.ship.power(0.4) } );
-    key("space", function() { that.fireBullet() } );
-  }
+    var that = this;
+
+    if(key.isPressed("right")) that.ship.direction = (that.ship.direction + 0.1) % (2 * Math.PI);
+    if(key.isPressed("left")) that.ship.direction = (that.ship.direction - 0.1) % (2 * Math.PI);
+     if(key.isPressed("up")) that.ship.power(0.4);
+     key('space', function(){ that.fireBullet(); });
+
+  };
 
   Game.prototype.addAsteroids = function(numAsteroids){
     var asteroids = [];
@@ -56,8 +58,23 @@
     });
   }
 
-  Game.prototype.removeAsteroid = function(asteroid) {
+  Game.prototype.checkBulletDeath = function() {
+    var that = this;
+    this.bullets.forEach(function(bullet) {
+      bullet.die(that)
+    });
+  }
+
+  Game.prototype.removeAsteroid = function(asteroid, bullet) {
     this.asteroids.splice(this.asteroids.indexOf(asteroid), 1);
+
+    if (asteroid.radius > 10){
+      console.log(asteroid);
+      console.log(bullet);
+      this.asteroids = this.asteroids.concat( Asteroids.Asteroid.splitAsteroid(asteroid, bullet) );
+      //this.asteroids.push( Asteroids.Asteroid.splitAsteroid(asteroid, bullet) );
+    };
+
   }
 
   Game.prototype.removeBullet = function(bullet) {
@@ -79,6 +96,7 @@
   Game.prototype.step = function() {
     this.move();
     this.checkCollisions();
+    this.checkBulletDeath();
     this.draw();
   };
 
@@ -88,8 +106,9 @@
 
   Game.prototype.start = function() {
     var that = this;
-    this.bindKeyHandlers();
+
     this.intervalId = window.setInterval(function() {
+      that.bindKeyHandlers();
       that.step();
     }, that.FPS);
   };
