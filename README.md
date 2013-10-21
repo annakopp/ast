@@ -1,4 +1,4 @@
 asteroids
 =========
 
-Canvas asteroids game for App Academy.
+Canvas asteroids game.
