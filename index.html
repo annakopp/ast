@@ -7,15 +7,24 @@
     <script src="ship.js"></script>
     <script src="bullet.js"></script>
     <script src="game.js"></script>
+	
+	<style>
+		#game {
+			width: 850px;
+			height: 50%;
+			margin: auto;
+		}
+	</style>
   </head>
   <body>
+	<div id="game"></div>
     <script>
       var canvas = document.createElement("canvas");
       canvas.setAttribute("width", "800");
       canvas.setAttribute("height", "500");
 
-      var body = document.getElementsByTagName("body")[0];
-      body.appendChild(canvas);
+      var game_div = document.getElementById("game");
+      game_div.appendChild(canvas);
 
       var background = new Image();
       background.src = "bg.jpg";
