@@ -52,7 +52,6 @@
     var that = this;
     this.asteroids.forEach(function(asteroid) {
       if (asteroid.isCollideWith(that.ship)) {
-        alert("Game over");
         that.stop();
       }
     });
@@ -72,7 +71,6 @@
       console.log(asteroid);
       console.log(bullet);
       this.asteroids = this.asteroids.concat( Asteroids.Asteroid.splitAsteroid(asteroid, bullet) );
-      //this.asteroids.push( Asteroids.Asteroid.splitAsteroid(asteroid, bullet) );
     };
 
   }
@@ -106,7 +104,6 @@
 
   Game.prototype.start = function() {
     var that = this;
-
     this.intervalId = window.setInterval(function() {
       that.bindKeyHandlers();
       that.step();
